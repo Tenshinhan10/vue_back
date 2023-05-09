@@ -12,7 +12,7 @@ let data = [
     "username": "johndoe",
     "password": "password123",
     "email": "johndoe@example.com",
-    "image": "https://wallpapers.com/images/featured/b3bkt91v6p4vj5xq.jpg"
+    "image": "https://i.etsystatic.com/15418561/r/il/f06c80/3233862560/il_fullxfull.3233862560_jwqd.jpg"
   },
   {
     "id": 2,
@@ -21,7 +21,25 @@ let data = [
     "username": "janedoe",
     "password": "password456",
     "email": "janedoe@example.com",
-    "image": "https://wallpapers.com/images/featured/b3bkt91v6p4vj5xq.jpg"
+    "image": "https://images.statusfacebook.com/profile_pictures/cartoon/Cartoon_Profile_Picture07.jpg"
+  },
+  {
+    "id": 3,
+    "fname": "Ten",
+    "lname": "Kub",
+    "username": "koraphat",
+    "password": "tanzaza",
+    "email": "ten@example.com",
+    "image": "https://pbs.twimg.com/media/Dyg-OCfW0AA9dKp.jpg"
+  },
+  {
+    "id": 4,
+    "fname": "Dog",
+    "lname": "HogHog",
+    "username": "dog123",
+    "password": "dogdog555",
+    "email": "dogdog555@example.com",
+    "image": "https://i.pinimg.com/originals/dc/55/a0/dc55a0fec14d93d9cf6fa32c32f7c7f2.jpg"
   }
 ];
 
@@ -35,6 +53,16 @@ app.use((_req, res, next) => {
 // GET /data
 app.get('/data', (_req, res) => {
   res.json(data);
+});
+// GET 1Data /data/:id
+app.get('/data/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const item = data.find(item => item.id === id);
+  if (item) {
+    res.json(item);
+  } else {
+    res.status(404).json({ message: "Item not found" });
+  }
 });
 
 // POST /data
